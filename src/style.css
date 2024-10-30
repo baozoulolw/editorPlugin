@@ -1,0 +1,8 @@
+#self_dialog{
+  font-size: 18px;
+  margin-right: 10px;
+}
+.head-right{
+  display: flex;
+  align-items: center;
+}
