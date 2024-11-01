@@ -9,6 +9,7 @@ import { registerLanguage } from '../language/index.js'
 import { unsafeWindow } from "$"
 import { getFontName } from '../font/index.js'
 import { setThemeToLanguage } from '../theme'
+import { getMonaco } from '../utils'
 
 let monacoCreate = () => { }
 /**
@@ -56,16 +57,22 @@ const editorDispose = () => {
 
 const create = function (dom, option, ...params) {
   setWorker()
-  let { editorConfig } = getSettings()
-  let fontObj = getFontName(editorConfig.fontFamily)
+  let { editorConfig, editorConfig: { theme, fontFamily } } = getSettings()
+  const { language } = option
+  let fontObj = getFontName(fontFamily)
   const editor = monacoCreate(dom, {
     ...option,
     ...editorConfig,
     fontFamily: fontObj.value,
+    //theme: language === 'html' ? 'vs-dark' : theme,
     //language: option.language === 'html' ? 'vue' : option.language,
   }, ...params)
-  setThemeToLanguage(option.language, unsafeWindow.monaco)
+  setThemeToLanguage(option.language, unsafeWindow.monaco,editor, theme)
   setWorker()
+  setTimeout(() => {
+
+    editor.layout()
+  })
   //setFeature(fontObj)
   return editor
 }

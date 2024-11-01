@@ -2,6 +2,7 @@ import { unsafeWindow } from "$"
 import { loadWASM } from "onigasm";
 
 export let hasGetWorkUrl = false
+const workerType = 'url'
 export const changeStatus = (flag) => {
   hasGetWorkUrl = flag
 }
@@ -22,11 +23,23 @@ export const initWorker = async () => {
     const blob = new Blob([text], { type: 'application/javascript;module' });
     // 生成一个URL
     const workerUrl = URL.createObjectURL(blob);
-    workerMap.set(key, new Worker(workerUrl, { type: 'module' }))
+    if(workerType === 'url') {
+      workerMap.set(key,workerUrl)
+    }else{
+      workerMap.set(key, new Worker(workerUrl, { type: 'module' }))
+    }
   }))
 }
 
 export const setWorker = async (monaco) => {
+  if(workerType === 'worker') {
+    await setIsWorker()
+  }else{
+    await setIsUrl()
+  }
+}
+
+const setIsWorker = async () => {
   unsafeWindow.MonacoEnvironment = {
     getWorker(_, label) {
       console.log(label)
@@ -53,4 +66,34 @@ export const setWorker = async (monaco) => {
     },
   };
 }
+
+const setIsUrl = async() => {
+  unsafeWindow.MonacoEnvironment = {
+    getWorkerUrl(_, label) {
+      console.log(label)
+      hasGetWorkUrl = true
+      switch (label) {
+        case "css":
+        case "less":
+        case "scss":
+          return workerMap.get('css')
+        case "handlebars":
+        case "html":
+        case "razor":
+          return workerMap.get('html')
+        case "json":
+          return workerMap.get('json')
+        case "javascript":
+        case "typescript":
+          return workerMap.get('ts')
+        case "tailwindcss":
+          return workerMap.get('tailwindcss')
+        default:
+          return workerMap.get('editor')
+      }
+    },
+  };
+}
+
+
 

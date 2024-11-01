@@ -58,6 +58,9 @@
           ></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="加载tm">
+        <el-switch v-model="settings.initTextmate"></el-switch>
+      </el-form-item>
     </el-form>
   </div>
 </template>

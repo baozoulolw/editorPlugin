@@ -10,7 +10,7 @@ import {
   tmGrammarJsonMap
 } from './constants.js'
 import { hasGetWorkUrl, changeStatus } from "../core/worker/index.js"
-import { regTailwind } from "../tailwindcss/tailwindcss.js"
+import { refreshTailwind } from "../tailwindcss/tailwindcss.js"
 
 export const registerTheme = async (monaco) => {
   unsafeWindow.codeThemes = codeThemeList
@@ -47,15 +47,19 @@ export const regTheme = async (theme) => {
  * @Author: 王浩然
  * @return {*}
  */
-export const setThemeToLanguage = async (languageId, monaco,editor) => {
+export const setThemeToLanguage = async (languageId, monaco,editor, theme) => {
+  const { initTextmate } = getSettings()
+  if(!initTextmate) return
+  const { out } = codeThemeList.find(i => i.themeName === theme)
+  if(out) return
   // vue单文件使用html语法高亮
   languageId = ['vue2', 'vue3', 'vue'].includes(languageId) ? 'vue' : languageId
   if (!scopeNameMap[languageId]) {
     return
   }
   languageId = languageId === 'css' ? 'scss' : languageId
-  languageId = languageId === 'html' ? 'vue' : languageId
-  console.log(languageId)
+  //languageId = languageId === 'html' ? 'vue' : languageId
+  //console.log(languageId)
   // 语言id到作用域名称的映射
   const grammars = new Map()
   grammars.set(languageId, scopeNameMap[languageId])
@@ -84,6 +88,6 @@ export const setThemeToLanguage = async (languageId, monaco,editor) => {
     monaco.languages.register({ id: languageId })
   }
   await wireTmGrammars(monaco, registry, grammars)
-  //regTailwind(monaco)
+  //refreshTailwind()
 }
 

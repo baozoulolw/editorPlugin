@@ -18,5 +18,6 @@ export default {
     overviewRulerBorder: true
   },
   copilot: 'codeium',
+  textmate:true,
   aiCode: false
 }
