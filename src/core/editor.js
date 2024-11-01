@@ -1,93 +1,40 @@
-import { setWorker, initWorker } from './worker'
-import { regTailwind } from '../tailwindcss/tailwindcss'
-import { registerTheme } from '../theme'
-import { getSettings, setSettings, setLoading } from '../utils'
-import editorConfig from '../../editor.config.js'
-import { registerDts } from '../dts'
-import { registerCopilot } from '../copilot/index.js'
-import { registerLanguage } from '../language/index.js'
-import { unsafeWindow } from "$"
-import { getFontName } from '../font/index.js'
-import { setThemeToLanguage } from '../theme'
-import { getMonaco } from '../utils'
+import { INITIAL, Registry, parseRawGrammar, StackElement } from 'vscode-textmate';
+import { createOnigScanner, createOnigString, loadWASM } from 'vscode-oniguruma';
 
-let monacoCreate = () => { }
-/**
- * @description:  初始化
- * @Date: 2024-10-29 22:42:51
- * @Author: 王浩然
- * @param {*} safeMonaco
- * @return {*}
- */
-const init = async safeMonaco => {
-  await initBefore(safeMonaco)
-  monacoCreate = safeMonaco.editor.create
-  safeMonaco.editor.create = create
-  await initAfter(safeMonaco)
-  monaco.editor.onWillDisposeModel(editorDispose);
-  setLoading(false)
+const init = monaco => {
+
 }
-
-const initBefore = async safeMonaco => {
-  await registerLanguage()
-  await registerDts()
-  await initWorker()
-  await registerTheme()
-
-  setWorker()
-}
-
-const initAfter = async safeMonaco => {
-  registerCopilot()
-  preVieWEditor()
-  regTailwind(safeMonaco)
-}
-
-
-export const initSettings = () => {
-  const settings = getSettings()
-  setSettings(_.merge({}, editorConfig, settings))
-}
-
-const editorDispose = () => {
-  if (_.isFunction(unsafeWindow.copilotDispose)) {
-    unsafeWindow.copilotDispose()
+const loadRegistry = async() => {
+  if (!isLoadedWASM) {
+    await loadWASM(await this.loadVSCodeOnigurumWASM());
+    isLoadedWASM = true;
   }
+  const registry = new Registry({
+    onigLib: Promise.resolve({
+      createOnigScanner,
+      createOnigString,
+    }),
+    loadGrammar: async (scopeName) => {
+      const key = Object.keys(this.grammars).find((k) => this.grammars[k].scopeName === scopeName);
+      const grammar = this.grammars[key as keyof typeof this.grammars];
+      if (grammar) {
+        const res = await http(`${grammar.tm}`);
+        const type = grammar.tm.substring(grammar.tm.lastIndexOf('.') + 1);
+        return parseRawGrammar(res, `example.${type}`);
+      }
+      return Promise.resolve(null);
+    },
+  });
 }
 
-const create = function (dom, option, ...params) {
-  setWorker()
-  let { editorConfig, editorConfig: { theme, fontFamily } } = getSettings()
-  const { language } = option
-  let fontObj = getFontName(fontFamily)
-  const editor = monacoCreate(dom, {
-    ...option,
-    ...editorConfig,
-    fontFamily: fontObj.value,
-    //theme: language === 'html' ? 'vs-dark' : theme,
-    //language: option.language === 'html' ? 'vue' : option.language,
-  }, ...params)
-  setThemeToLanguage(option.language, unsafeWindow.monaco,editor, theme)
-  setWorker()
-  setTimeout(() => {
-
-    editor.layout()
-  })
-  //setFeature(fontObj)
-  return editor
-}
-
-const preVieWEditor = () => {
-  let types = ['json', 'html', 'css', 'javascript']
-  types.forEach(async type => {
-    let editor = unsafeWindow.monaco.editor.create(document.createElement('div'), {
-      language: type
-    })
-    editor.dispose()
-  })
-}
-
-
-export {
-  init
+public async loadVSCodeOnigurumWASM() {
+  const response = await fetch(this.wasm);
+  const contentType = response.headers.get('content-type');
+  if (contentType === 'application/wasm') {
+    return response;
+  }
+  // Using the response directly only works if the server sets the MIME type 'application/wasm'.
+  // Otherwise, a TypeError is thrown when using the streaming compiler.
+  // We therefore use the non-streaming compiler :(.
+  return await response.arrayBuffer();
 }
