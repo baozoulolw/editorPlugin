@@ -24,6 +24,7 @@ const defineTheme = async () => {
  * @returns {Promise<void>}
  */
 export const regTheme = async (theme) => {
+  return
   let themes = unsafeWindow.codeThemes
   let themeItem = themes.find(i => i.name === theme)
   if (themeItem.out) return
@@ -35,7 +36,7 @@ export const regTheme = async (theme) => {
       ...json,
       name: theme
     })
-    shikiToMonaco(highlighter, unsafeWindow.monaco)
+    //shikiToMonaco(highlighter, unsafeWindow.monaco)
     themeItem.loaded = true
     themeItem.cache = json
   }
@@ -44,7 +45,8 @@ export const regTheme = async (theme) => {
 const initShiki = async () => {
   const monaco = unsafeWindow.monaco
   highlighter = await createHighlighter({
-    themes:['vitesse-dark'],
+    //themes:codeThemeList.filter(i => i.file).map(i => i.file.split('.')[0]),
+    themes:['slack-dark'],
     langs: [
       'javascript',
       'typescript',
@@ -55,7 +57,7 @@ const initShiki = async () => {
       'json'
     ],
   })
-  await defineTheme()
-  shikiToMonaco(highlighter, monaco)
+  //await defineTheme()
+  shikiToMonaco(highlighter, unsafeWindow.monaco)
 }
 

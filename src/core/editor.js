@@ -39,7 +39,7 @@ const initBefore = async safeMonaco => {
 const initAfter = async safeMonaco => {
   registerCopilot()
   regTailwind(safeMonaco)
-  preVieWEditor()
+  //preVieWEditor()
 }
 
 
@@ -66,10 +66,7 @@ const create = function (dom, option, ...params) {
     theme,
     //language: option.language === 'html' ? 'vue' : option.language,
   }, ...params)
-  setWorker()
-  setTimeout(() => {
-    editor.layout()
-  })
+  //setWorker()
   //setFeature(fontObj)
   return editor
 }

@@ -90,7 +90,10 @@ export default {
     },
   },
   mounted() {
-    this.themes = codeThemeList
+    this.themes = codeThemeList.map(i => {
+      let name = i.out ? i.name: i.file.split('.')[0]
+      return {name}
+    })
     this.settings = getSettings();
     this.fonts = fontList;
     this.copilots = copilots;
