@@ -8,7 +8,6 @@ import { registerCopilot } from '../copilot/index.js'
 import { registerLanguage } from '../language/index.js'
 import { unsafeWindow } from "$"
 import { getFontName } from '../font/index.js'
-import { setThemeToLanguage } from '../theme'
 import { getMonaco } from '../utils'
 
 let monacoCreate = () => { }
@@ -39,8 +38,8 @@ const initBefore = async safeMonaco => {
 
 const initAfter = async safeMonaco => {
   registerCopilot()
-  preVieWEditor()
   regTailwind(safeMonaco)
+  preVieWEditor()
 }
 
 

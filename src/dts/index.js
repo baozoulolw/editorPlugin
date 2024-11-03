@@ -6,7 +6,7 @@ export const registerDts = async () => {
 }
 
 const useDTS = async (monaco, type) => {
-  const response = await fetch(`${import.meta.env.VITE_ALI_OSS}/type/${type}.d.ts`);
+  const response = await fetch(`${import.meta.env.VITE_ALI_OSS}/types/${type}.d.ts`);
   const text = await response.text();
   const libUrl = `ts:fileName/${type}.d.ts`
   monaco.languages.typescript.javascriptDefaults.addExtraLib(text, libUrl);

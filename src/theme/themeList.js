@@ -1,262 +1,62 @@
-// 该文件根据 /public/themes 目录下的主题文件自动生成，请勿直接修改，请运行命令：npm run createThemeList
-export const codeThemeList = [
-  { name: "vs", value: "vs",themeName:'vs', out: true, group: '默认' },
-  { name: "vs-dark", value: "vs-dark",themeName:'vs-dark', out: true, group: '默认' },
-  { name: "hc-black", value: "hc-black",themeName:'hc-black', out: true, group: '默认' },
-  {
-    "group": "Winter is Coming",
-    "name": "Winter Is Coming1",
-    "themeName": "WinterIsComing1",
-    "path": "WinterIsComing-dark-blue-color-no-italics-theme.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Winter is Coming",
-    "name": "Winter is Coming5",
-    "themeName": "WinterisComing5",
-    "path": "WinterIsComing-light-color-no-italics-theme.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Winter is Coming",
-    "name": "Winter is Coming6",
-    "themeName": "WinterisComing6",
-    "path": "WinterIsComing-light-color-theme.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Winter is Coming",
-    "name": "Winter Is Coming3",
-    "themeName": "WinterIsComing3",
-    "path": "WinterIsComing-dark-color-no-italics-theme.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Winter is Coming",
-    "name": "Winter Is Coming4",
-    "themeName": "WinterIsComing4",
-    "path": "WinterIsComing-dark-color-theme.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Winter is Coming",
-    "name": "Winter Is Coming2",
-    "themeName": "WinterIsComing2",
-    "path": "WinterIsComing-dark-blue-color-theme.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Catppuccin",
-    "name": "Catppuccin Macchiato",
-    "themeName": "CatppuccinMacchiato",
-    "path": "macchiato.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Catppuccin",
-    "name": "Catppuccin Mocha",
-    "themeName": "CatppuccinMocha",
-    "path": "mocha.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Catppuccin",
-    "name": "Catppuccin Frappé",
-    "themeName": "CatppuccinFrappé",
-    "path": "frappe.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Catppuccin",
-    "name": "Catppuccin Latte",
-    "themeName": "CatppuccinLatte",
-    "path": "latte.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Atom One Dark Theme",
-    "name": "OneDark",
-    "themeName": "OneDark",
-    "path": "OneDark.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "One Dark Pro",
-    "name": "One Dark Pro1",
-    "themeName": "OneDarkPro1",
-    "path": "OneDark-Pro-darker.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "One Dark Pro",
-    "name": "One Dark Pro2",
-    "themeName": "OneDarkPro2",
-    "path": "OneDark-Pro-flat.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "One Dark Pro",
-    "name": "One Dark Pro3",
-    "themeName": "OneDarkPro3",
-    "path": "OneDark-Pro-mix.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "One Dark Pro",
-    "name": "One Dark Pro4",
-    "themeName": "OneDarkPro4",
-    "path": "OneDark-Pro.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Dark High Contrast",
-    "themeName": "GitHubDarkHighContrast",
-    "path": "dark-high-contrast.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Dark Colorblind",
-    "themeName": "GitHubDarkColorblind",
-    "path": "dark-colorblind.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Light Colorblind",
-    "themeName": "GitHubLightColorblind",
-    "path": "light-colorblind.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Light",
-    "themeName": "GitHubLight",
-    "path": "light.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Light Default",
-    "themeName": "GitHubLightDefault",
-    "path": "light-default.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Light High Contrast",
-    "themeName": "GitHubLightHighContrast",
-    "path": "light-high-contrast.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Dark",
-    "themeName": "GitHubDark",
-    "path": "dark.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Dark Default",
-    "themeName": "GitHubDarkDefault",
-    "path": "dark-default.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "GitHub's",
-    "name": "GitHub Dark Dimmed",
-    "themeName": "GitHubDarkDimmed",
-    "path": "dark-dimmed.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Monokai Pro",
-    "name": "Monokai Classic",
-    "themeName": "MonokaiClassic",
-    "path": "Monokai Classic.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Monokai Pro",
-    "name": "Monokai Pro (Filter Ristretto)",
-    "themeName": "MonokaiProFilterRistretto",
-    "path": "Monokai Pro (Filter Ristretto).json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Monokai Pro",
-    "name": "Monokai Pro",
-    "themeName": "MonokaiPro",
-    "path": "Monokai Pro.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Monokai Pro",
-    "name": "Monokai Pro (Filter Machine)",
-    "themeName": "MonokaiProFilterMachine",
-    "path": "Monokai Pro (Filter Machine).json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Monokai Pro",
-    "name": "Monokai Pro (Filter Octagon)",
-    "themeName": "MonokaiProFilterOctagon",
-    "path": "Monokai Pro (Filter Octagon).json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Monokai Pro",
-    "name": "Monokai Pro (Filter Spectrum)",
-    "themeName": "MonokaiProFilterSpectrum",
-    "path": "Monokai Pro (Filter Spectrum).json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Bluloco Dark",
-    "name": "Bluloco Dark Italic",
-    "themeName": "BlulocoDarkItalic",
-    "path": "bluloco-dark-italic-color-theme.json",
-    "loaded": false,
-    "cache": ""
-  },
-  {
-    "group": "Bluloco Dark",
-    "name": "Bluloco Dark",
-    "themeName": "BlulocoDark",
-    "path": "bluloco-dark-color-theme.json",
-    "loaded": false,
-    "cache": ""
-  }
-]
+const codeThemeList = [
+  {name:'vs',out:true},
+  {name:'vs-dark',out:true},
+  { name: "Andromeda", file: "andromeeda.json" },
+  { name: "Aurora-X", file: "aurora-x.json" },
+  { name: "Ayushadi-Dark", file: "ayu-dark.json" },
+  { name: "Catppuccin-Frappe", file: "catppuccin-frappe.json" },
+  { name: "Catppuccin-Latte", file: "catppuccin-latte.json" },
+  { name: "Catppuccin-Macchiato", file: "catppuccin-macchiato.json" },
+  { name: "Catppuccin-Mocha", file: "catppuccin-mocha.json" },
+  { name: "Dark-Plus", file: "dark-plus.json" },
+  { name: "Dracula-Soft", file: "dracula-soft.json" },
+  { name: "Dracula", file: "dracula.json" },
+  { name: "Everforest-Dark", file: "everforest-dark.json" },
+  { name: "Everforest-Light", file: "everforest-light.json" },
+  { name: "GitHub-Dark-Default", file: "github-dark-default.json" },
+  { name: "GitHub-Dark-Dimmed", file: "github-dark-dimmed.json" },
+  { name: "GitHub-Dark-High-Contrast", file: "github-dark-high-contrast.json" },
+  { name: "GitHub-Dark", file: "github-dark.json" },
+  { name: "GitHub-Light-Default", file: "github-light-default.json" },
+  { name: "GitHub-Light-High-Contrast", file: "github-light-high-contrast.json" },
+  { name: "GitHub-Light", file: "github-light.json" },
+  { name: "Houston", file: "houston.json" },
+  { name: "Kanagawa-Dragon", file: "kanagawa-dragon.json" },
+  { name: "Kanagawa-Lotus", file: "kanagawa-lotus.json" },
+  { name: "Kanagawa-Wave", file: "kanagawa-wave.json" },
+  { name: "Laserwave", file: "laserwave.json" },
+  { name: "Light-Plus", file: "light-plus.json" },
+  { name: "Materal-Theme-Darker", file: "materal-theme-darker.json" },
+  { name: "Materal-Theme-Lighter", file: "materal-theme-lighter.json" },
+  { name: "Material-Theme-Ocean", file: "material-theme-ocean.json" },
+  { name: "Material-Theme-Palenight", file: "material-theme-palenight.json" },
+  { name: "Material-Theme", file: "materal-theme.json" },
+  { name: "Min-Dark", file: "min-dark.json" },
+  { name: "Min-Light", file: "min-light.json" },
+  { name: "Monokai", file: "monokal.json" },
+  { name: "Night-Owl", file: "night-owl.json" },
+  { name: "Nord", file: "nord.json" },
+  { name: "One-Dark-Pro", file: "one-dark-pro.json" },
+  { name: "One-Light", file: "one-light.json" },
+  { name: "Plastic", file: "plastic.json" },
+  { name: "Poimandres", file: "poimandres.json" },
+  { name: "Red-Son", file: "red.son" }, // 注意这里可能是文件名错误，应该是 .json 结尾
+  { name: "Rose-Pine-Dawn", file: "rose-pine-dawn.json" },
+  { name: "Rose-Pine-Moon", file: "rose-pine-moon.json" },
+  { name: "Rose-Pine", file: "rose-pine.json" },
+  { name: "Slack-Dark", file: "slack-dark.json" },
+  { name: "Slack-Ochin", file: "slack-ochin.json" },
+  { name: "Snazzy-Light", file: "snazzy-light.json" },
+  { name: "Solarized-Dark", file: "solanzed-dark.json" },
+  { name: "Solarized-Light", file: "solarized-light.json" },
+  { name: "Synthwave-'84", file: "synthwave-84.json" },
+  { name: "Tokyo-Night", file: "tokyo-night.json" },
+  { name: "Vesper", file: "vesper.json" },
+  { name: "Vitesse-Black", file: "vitesse-black.json" },
+  { name: "Vitesse-Dark", file: "vitesse-dark.json" },
+  { name: "Vitesse-Light", file: "vitesse-light.json" }
+];
+
+export{
+  codeThemeList
+}

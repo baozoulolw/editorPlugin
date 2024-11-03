@@ -1,19 +1,16 @@
 import { unsafeWindow } from "$"
 const { _ } = unsafeWindow
 import { getSettings, setSettings } from "../utils"
-import { Registry } from 'monaco-textmate'
-import { wireTmGrammars } from 'monaco-editor-textmate'
 import { codeThemeList } from './themeList'
-import {
-  monacoEditorInnerLanguages,
-  scopeNameMap,
-  tmGrammarJsonMap
-} from './constants.js'
-import { hasGetWorkUrl, changeStatus } from "../core/worker/index.js"
-import { refreshTailwind } from "../tailwindcss/tailwindcss.js"
+import { shikiToMonaco } from '@shikijs/monaco'
+import { createHighlighter } from 'shiki'
+
+
+let highlighter
 
 export const registerTheme = async (monaco) => {
   unsafeWindow.codeThemes = codeThemeList
+  await initShiki()
   await defineTheme()
 }
 
@@ -28,16 +25,37 @@ const defineTheme = async () => {
  */
 export const regTheme = async (theme) => {
   let themes = unsafeWindow.codeThemes
-  let themeItem = themes.find(i => i.themeName === theme)
+  let themeItem = themes.find(i => i.name === theme)
   if (themeItem.out) return
   if (themeItem.loaded && themeItem.cache) return
-  let editor = unsafeWindow.monaco.editor;
-  const response = await fetch(`${import.meta.env.VITE_ALI_OSS}/theme/${themeItem.group}/${themeItem.path}`);
+  const response = await fetch(`${import.meta.env.VITE_ALI_OSS}/themes/${themeItem.file}`);
   if (response.ok) {
     const json = await response.json()
-    editor.defineTheme(theme, json)
+    await highlighter.loadTheme({
+      ...json,
+      name: theme
+    })
+    //shikiToMonaco(highlighter, unsafeWindow.monaco)
     themeItem.loaded = true
     themeItem.cache = json
   }
+}
+
+const initShiki = async () => {
+  const monaco = unsafeWindow.monaco
+  highlighter = await createHighlighter({
+    themes:['vitesse-dark'],
+    langs: [
+      'javascript',
+      'typescript',
+      'html',
+      'css',
+      'sass',
+      'scss',
+      'json'
+    ],
+  })
+  await defineTheme()
+  shikiToMonaco(highlighter, monaco)
 }
 

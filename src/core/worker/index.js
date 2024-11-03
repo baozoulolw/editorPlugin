@@ -1,16 +1,12 @@
 import { unsafeWindow } from "$"
-import { loadWASM } from "onigasm";
 
-export let hasGetWorkUrl = false
+
 const workerType = 'url'
-export const changeStatus = (flag) => {
-  hasGetWorkUrl = flag
-}
+
 const workerMap = new Map()
 
 export const initWorker = async () => {
-  await loadWASM(`${import.meta.env.VITE_ALI_OSS}/onigasm/onigasm.wasm`)
-  let baseUrl = `${import.meta.env.VITE_ALI_OSS}/worker/`
+  let baseUrl = `${import.meta.env.VITE_ALI_OSS}/workers/`
   let workers = [
     { fileName: 'html.worker.bundle.js', key: 'html' },
     { fileName: 'ts.worker.bundle.js', key: 'ts' },
@@ -42,8 +38,6 @@ export const setWorker = async (monaco) => {
 const setIsWorker = async () => {
   unsafeWindow.MonacoEnvironment = {
     getWorker(_, label) {
-      console.log(label)
-      hasGetWorkUrl = true
       switch (label) {
         case "css":
         case "less":
@@ -70,8 +64,6 @@ const setIsWorker = async () => {
 const setIsUrl = async() => {
   unsafeWindow.MonacoEnvironment = {
     getWorkerUrl(_, label) {
-      console.log(label)
-      hasGetWorkUrl = true
       switch (label) {
         case "css":
         case "less":

@@ -32,20 +32,13 @@
           v-model="settings.editorConfig.theme"
           @change="themeChange"
         >
-          <el-option-group
-            v-for="(list, index) in themes"
-            :key="index"
-            :label="list.group"
-            :divider="true"
+          <el-option
+            v-for="item in themes"
+            :key="item.name"
+            :value="item.name"
+            :label="item.name"
           >
-            <el-option
-              v-for="item in list.children"
-              :key="item.themeName"
-              :value="item.themeName"
-              :label="item.name"
-            >
-            </el-option>
-          </el-option-group>
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="智能提示">
@@ -91,22 +84,13 @@ export default {
     },
   },
   methods: {
-    initThemeOptions() {
-      let obj = _.groupBy(codeThemeList, "group");
-      Object.keys(obj).forEach((key) => {
-        this.themes.push({
-          group: key === "undefined" ? "其他" : key,
-          children: obj[key],
-        });
-      });
-    },
     themeChange(theme) {
       if (_.isEmpty(theme)) return;
       regTheme(theme);
     },
   },
   mounted() {
-    this.initThemeOptions();
+    this.themes = codeThemeList
     this.settings = getSettings();
     this.fonts = fontList;
     this.copilots = copilots;
