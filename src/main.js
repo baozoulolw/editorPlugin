@@ -1,8 +1,11 @@
 import { unsafeWindow } from "$";
-import { init } from "./core/editor";
-import './style.css'
-import 'virtual:uno.css'
+import { init,injectMonacoLoader } from "./core/editor";
+import { initShiki } from "./shiki";
 
 if (unsafeWindow.location.hash.startsWith('#/widgetPage')) {
-  unsafeWindow.require(["vs/editor/editor.main"], monaco => init(monaco))
+  //await injectMonacoLoader()
+  unsafeWindow.require(["vs/editor/editor.main"], monaco => {
+    initShiki(monaco)
+    //init(monaco)
+  })
 }

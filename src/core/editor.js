@@ -1,40 +1,53 @@
-import { INITIAL, Registry, parseRawGrammar, StackElement } from 'vscode-textmate';
-import { createOnigScanner, createOnigString, loadWASM } from 'vscode-oniguruma';
+import { config, themes, grammars } from "./config"
+import LanguageProvider from "./languageProvider"
+import ThemeProvider from "./themeProvider"
 
-const init = monaco => {
+const init = async monaco => {
+  //injectMonacoLoader()
+  const language = new LanguageProvider({
+    monaco,
+    wasm: config.wasm,
+    grammars: grammars,
+  })
+  await language.loadRegistry();
 
-}
-const loadRegistry = async() => {
-  if (!isLoadedWASM) {
-    await loadWASM(await this.loadVSCodeOnigurumWASM());
-    isLoadedWASM = true;
+  let themeProvider = new ThemeProvider({
+    monaco: monaco,
+    registry: language.getRegistry(),
+    themes: themes,
+  });
+
+  let create = monaco.editor.create
+  await themeProvider.setTheme('self');
+  monaco.editor.create = (container, options) => {
+    return create(container, {
+      ...options,
+      //language: 'vue',
+      theme: 'self'
+    })
   }
-  const registry = new Registry({
-    onigLib: Promise.resolve({
-      createOnigScanner,
-      createOnigString,
-    }),
-    loadGrammar: async (scopeName) => {
-      const key = Object.keys(this.grammars).find((k) => this.grammars[k].scopeName === scopeName);
-      const grammar = this.grammars[key as keyof typeof this.grammars];
-      if (grammar) {
-        const res = await http(`${grammar.tm}`);
-        const type = grammar.tm.substring(grammar.tm.lastIndexOf('.') + 1);
-        return parseRawGrammar(res, `example.${type}`);
-      }
-      return Promise.resolve(null);
-    },
+}
+
+export async function injectMonacoLoader() {
+  let vs = 'https://unpkg.com/monaco-editor@0.50.0/min/vs'
+  await new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = vs + `/loader.js`;
+    document.body.appendChild(script);
+    script.onload = () => {
+      window.require.config({
+        paths: { vs },
+      });
+      resolve('');
+    };
+
+    script.onerror = (err) => {
+      console.error('Inject monaco loader failed');
+      reject(err);
+    };
   });
 }
 
-public async loadVSCodeOnigurumWASM() {
-  const response = await fetch(this.wasm);
-  const contentType = response.headers.get('content-type');
-  if (contentType === 'application/wasm') {
-    return response;
-  }
-  // Using the response directly only works if the server sets the MIME type 'application/wasm'.
-  // Otherwise, a TypeError is thrown when using the streaming compiler.
-  // We therefore use the non-streaming compiler :(.
-  return await response.arrayBuffer();
+export {
+  init
 }
