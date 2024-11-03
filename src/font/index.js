@@ -3,7 +3,8 @@ import { fontList } from "./fontList"
 
 export const getFontName = () => {
   const { editorConfig: { fontFamily } } = getSettings()
-  return fontList.find(item => item.id === fontFamily)
+  let { value, fontLigatures } = fontList.find(item => item.id === fontFamily)
+  return { fontFamily: value, fontLigatures }
 }
 
 // 更新字体间隔

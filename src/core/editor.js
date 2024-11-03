@@ -63,14 +63,12 @@ const create = function (dom, option, ...params) {
   const editor = monacoCreate(dom, {
     ...option,
     ...editorConfig,
-    fontFamily: fontObj.value,
-    //theme: language === 'html' ? 'vs-dark' : theme,
+    ...fontObj,
+    theme,
     //language: option.language === 'html' ? 'vue' : option.language,
   }, ...params)
-  setThemeToLanguage(option.language, unsafeWindow.monaco,editor, theme)
   setWorker()
   setTimeout(() => {
-
     editor.layout()
   })
   //setFeature(fontObj)
