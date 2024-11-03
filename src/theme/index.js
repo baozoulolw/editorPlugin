@@ -35,7 +35,7 @@ export const regTheme = async (theme) => {
       ...json,
       name: theme
     })
-    //shikiToMonaco(highlighter, unsafeWindow.monaco)
+    shikiToMonaco(highlighter, unsafeWindow.monaco)
     themeItem.loaded = true
     themeItem.cache = json
   }
