@@ -2,7 +2,7 @@ export default {
   editorConfig: {
     fontSize: 15,
     fontFamily: '1',
-    theme: "vs",
+    theme: "monokai-Monokai-Pro-Filter-Spectrum",
     tabSize: 2,
     cursorSmoothCaretAnimation: true, //光标平滑
     roundedSelection: true, // 选中圆角
@@ -10,7 +10,8 @@ export default {
     fontLigatures: true,
     formatOnType: true,
     minimap: {
-      enabled: false
+      enabled: true,
+      autohide:true
     },
     EditorAutoClosingEditStrategy: 'auto', // 选中括号闭合
     autoClosingComments: true, // 自动闭合注释

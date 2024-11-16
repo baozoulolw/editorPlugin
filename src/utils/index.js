@@ -1,5 +1,4 @@
 import { unsafeWindow } from "$"
-import * as monaco from "monaco-editor"
 let loadingInstance = null
 export const getSettings = () => {
   let settings = unsafeWindow.localStorage.getItem(import.meta.env.VITE_STORY_KEY)

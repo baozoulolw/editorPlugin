@@ -1,62 +1,299 @@
-const codeThemeList = [
-  {name:'vs',out:true},
-  {name:'vs-dark',out:true},
-  { name: "Andromeda", file: "andromeeda.json" },
-  { name: "Aurora-X", file: "aurora-x.json" },
-  { name: "Ayushadi-Dark", file: "ayu-dark.json" },
-  { name: "Catppuccin-Frappe", file: "catppuccin-frappe.json" },
-  { name: "Catppuccin-Latte", file: "catppuccin-latte.json" },
-  { name: "Catppuccin-Macchiato", file: "catppuccin-macchiato.json" },
-  { name: "Catppuccin-Mocha", file: "catppuccin-mocha.json" },
-  { name: "Dark-Plus", file: "dark-plus.json" },
-  { name: "Dracula-Soft", file: "dracula-soft.json" },
-  { name: "Dracula", file: "dracula.json" },
-  { name: "Everforest-Dark", file: "everforest-dark.json" },
-  { name: "Everforest-Light", file: "everforest-light.json" },
-  { name: "GitHub-Dark-Default", file: "github-dark-default.json" },
-  { name: "GitHub-Dark-Dimmed", file: "github-dark-dimmed.json" },
-  { name: "GitHub-Dark-High-Contrast", file: "github-dark-high-contrast.json" },
-  { name: "GitHub-Dark", file: "github-dark.json" },
-  { name: "GitHub-Light-Default", file: "github-light-default.json" },
-  { name: "GitHub-Light-High-Contrast", file: "github-light-high-contrast.json" },
-  { name: "GitHub-Light", file: "github-light.json" },
-  { name: "Houston", file: "houston.json" },
-  { name: "Kanagawa-Dragon", file: "kanagawa-dragon.json" },
-  { name: "Kanagawa-Lotus", file: "kanagawa-lotus.json" },
-  { name: "Kanagawa-Wave", file: "kanagawa-wave.json" },
-  { name: "Laserwave", file: "laserwave.json" },
-  { name: "Light-Plus", file: "light-plus.json" },
-  { name: "Materal-Theme-Darker", file: "material-theme-darker.json" },
-  { name: "Materal-Theme-Lighter", file: "material-theme-lighter.json" },
-  { name: "Material-Theme-Ocean", file: "material-theme-ocean.json" },
-  { name: "Material-Theme-Palenight", file: "material-theme-palenight.json" },
-  { name: "Material-Theme", file: "material-theme.json" },
-  { name: "Min-Dark", file: "min-dark.json" },
-  { name: "Min-Light", file: "min-light.json" },
-  { name: "Monokai", file: "monokai.json" },
-  { name: "Night-Owl", file: "night-owl.json" },
-  { name: "Nord", file: "nord.json" },
-  { name: "One-Dark-Pro", file: "one-dark-pro.json" },
-  { name: "One-Light", file: "one-light.json" },
-  { name: "Plastic", file: "plastic.json" },
-  { name: "Poimandres", file: "poimandres.json" },
-  { name: "Red", file: "red.json" }, // 注意这里可能是文件名错误，应该是 .json 结尾
-  { name: "Rose-Pine-Dawn", file: "rose-pine-dawn.json" },
-  { name: "Rose-Pine-Moon", file: "rose-pine-moon.json" },
-  { name: "Rose-Pine", file: "rose-pine.json" },
-  { name: "Slack-Dark", file: "slack-dark.json" },
-  { name: "Slack-Ochin", file: "slack-ochin.json" },
-  { name: "Snazzy-Light", file: "snazzy-light.json" },
-  { name: "Solarized-Dark", file: "solarized-dark.json" },
-  { name: "Solarized-Light", file: "solarized-dark.json" },
-  { name: "Synthwave-84", file: "synthwave-84.json" },
-  { name: "Tokyo-Night", file: "tokyo-night.json" },
-  { name: "Vesper", file: "vesper.json" },
-  { name: "Vitesse-Black", file: "vitesse-black.json" },
-  { name: "Vitesse-Dark", file: "vitesse-dark.json" },
-  { name: "Vitesse-Light", file: "vitesse-light.json" }
+export const codeThemeList = [
+  {
+    "name": "Atom One Dark Theme",
+    "children": [
+      {
+        "value": "Atom-One-Dark-Theme-OneDark",
+        "label": "OneDark",
+        "cache": false,
+        "load": false,
+        "parent": "Atom One Dark Theme"
+      }
+    ]
+  },
+  {
+    "name": "Atom One Light Theme",
+    "children": [
+      {
+        "value": "Atom-One-Light-Theme-OneLight",
+        "label": "OneLight",
+        "cache": false,
+        "load": false,
+        "parent": "Atom One Light Theme"
+      }
+    ]
+  },
+  {
+    "name": "Catppuccin for VSCode",
+    "children": [
+      {
+        "value": "Catppuccin-for-VSCode-frappe",
+        "label": "frappe",
+        "cache": false,
+        "load": false,
+        "parent": "Catppuccin for VSCode"
+      },
+      {
+        "value": "Catppuccin-for-VSCode-latte",
+        "label": "latte",
+        "cache": false,
+        "load": false,
+        "parent": "Catppuccin for VSCode"
+      },
+      {
+        "value": "Catppuccin-for-VSCode-macchiato",
+        "label": "macchiato",
+        "cache": false,
+        "load": false,
+        "parent": "Catppuccin for VSCode"
+      },
+      {
+        "value": "Catppuccin-for-VSCode-mocha",
+        "label": "mocha",
+        "cache": false,
+        "load": false,
+        "parent": "Catppuccin for VSCode"
+      }
+    ]
+  },
+  {
+    "name": "Dracula Theme Official",
+    "children": [
+      {
+        "value": "Dracula-Theme-Official-dracula-soft",
+        "label": "dracula-soft",
+        "cache": false,
+        "load": false,
+        "parent": "Dracula Theme Official"
+      },
+      {
+        "value": "Dracula-Theme-Official-dracula",
+        "label": "dracula",
+        "cache": false,
+        "load": false,
+        "parent": "Dracula Theme Official"
+      }
+    ]
+  },
+  {
+    "name": "GitHub Theme",
+    "children": [
+      {
+        "value": "GitHub-Theme-dark-colorblind",
+        "label": "dark-colorblind",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-dark-default",
+        "label": "dark-default",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-dark-dimmed",
+        "label": "dark-dimmed",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-dark-high-contrast",
+        "label": "dark-high-contrast",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-dark",
+        "label": "dark",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-light-colorblind",
+        "label": "light-colorblind",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-light-default",
+        "label": "light-default",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-light-high-contrast",
+        "label": "light-high-contrast",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      },
+      {
+        "value": "GitHub-Theme-light",
+        "label": "light",
+        "cache": false,
+        "load": false,
+        "parent": "GitHub Theme"
+      }
+    ]
+  },
+  {
+    "name": "One Dark Pro",
+    "children": [
+      {
+        "value": "One-Dark-Pro-OneDark-Pro-darker",
+        "label": "OneDark-Pro-darker",
+        "cache": false,
+        "load": false,
+        "parent": "One Dark Pro"
+      },
+      {
+        "value": "One-Dark-Pro-OneDark-Pro-flat",
+        "label": "OneDark-Pro-flat",
+        "cache": false,
+        "load": false,
+        "parent": "One Dark Pro"
+      },
+      {
+        "value": "One-Dark-Pro-OneDark-Pro-mix",
+        "label": "OneDark-Pro-mix",
+        "cache": false,
+        "load": false,
+        "parent": "One Dark Pro"
+      },
+      {
+        "value": "One-Dark-Pro-OneDark-Pro",
+        "label": "OneDark-Pro",
+        "cache": false,
+        "load": false,
+        "parent": "One Dark Pro"
+      }
+    ]
+  },
+  {
+    "name": "One Monokai Theme",
+    "children": [
+      {
+        "value": "One-Monokai-Theme-OneMonokai-color-theme",
+        "label": "OneMonokai-color-theme",
+        "cache": false,
+        "load": false,
+        "parent": "One Monokai Theme"
+      }
+    ]
+  },
+  {
+    "name": "Winter is Coming Theme",
+    "children": [
+      {
+        "value": "Winter-is-Coming-Theme-WinterIsComing-dark-blue-color-no-italics-theme",
+        "label": "WinterIsComing-dark-blue-color-no-italics-theme",
+        "cache": false,
+        "load": false,
+        "parent": "Winter is Coming Theme"
+      },
+      {
+        "value": "Winter-is-Coming-Theme-WinterIsComing-dark-blue-color-theme",
+        "label": "WinterIsComing-dark-blue-color-theme",
+        "cache": false,
+        "load": false,
+        "parent": "Winter is Coming Theme"
+      },
+      {
+        "value": "Winter-is-Coming-Theme-WinterIsComing-dark-color-no-italics-theme",
+        "label": "WinterIsComing-dark-color-no-italics-theme",
+        "cache": false,
+        "load": false,
+        "parent": "Winter is Coming Theme"
+      },
+      {
+        "value": "Winter-is-Coming-Theme-WinterIsComing-dark-color-theme",
+        "label": "WinterIsComing-dark-color-theme",
+        "cache": false,
+        "load": false,
+        "parent": "Winter is Coming Theme"
+      },
+      {
+        "value": "Winter-is-Coming-Theme-WinterIsComing-light-color-no-italics-theme",
+        "label": "WinterIsComing-light-color-no-italics-theme",
+        "cache": false,
+        "load": false,
+        "parent": "Winter is Coming Theme"
+      },
+      {
+        "value": "Winter-is-Coming-Theme-WinterIsComing-light-color-theme",
+        "label": "WinterIsComing-light-color-theme",
+        "cache": false,
+        "load": false,
+        "parent": "Winter is Coming Theme"
+      }
+    ]
+  },
+  {
+    "name": "monokai",
+    "children": [
+      {
+        "value": "monokai-Monokai-Classic",
+        "label": "Monokai Classic",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      },
+      {
+        "value": "monokai-Monokai-Pro-Filter-Machine",
+        "label": "Monokai Pro (Filter Machine)",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      },
+      {
+        "value": "monokai-Monokai-Pro-Filter-Octagon",
+        "label": "Monokai Pro (Filter Octagon)",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      },
+      {
+        "value": "monokai-Monokai-Pro-Filter-Ristretto",
+        "label": "Monokai Pro (Filter Ristretto)",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      },
+      {
+        "value": "monokai-Monokai-Pro-Filter-Spectrum",
+        "label": "Monokai Pro (Filter Spectrum)",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      },
+      {
+        "value": "monokai-Monokai-Pro-Light-Filter-Sun",
+        "label": "Monokai Pro Light (Filter Sun)",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      },
+      {
+        "value": "monokai-Monokai-Pro-Light",
+        "label": "Monokai Pro Light",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      },
+      {
+        "value": "monokai-Monokai-Pro",
+        "label": "Monokai Pro",
+        "cache": false,
+        "load": false,
+        "parent": "monokai"
+      }
+    ]
+  }
 ];
-
-export{
-  codeThemeList
-}

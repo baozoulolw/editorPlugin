@@ -32,13 +32,19 @@
           v-model="settings.editorConfig.theme"
           @change="themeChange"
         >
-          <el-option
-            v-for="item in themes"
-            :key="item.name"
-            :value="item.name"
-            :label="item.name"
+          <el-option-group
+            v-for="group in themes"
+            :key="group.name"
+            :label="group.name"
           >
-          </el-option>
+            <el-option
+              v-for="item in group.children"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-option-group>
         </el-select>
       </el-form-item>
       <el-form-item label="智能提示">
@@ -50,9 +56,6 @@
             :value="item.id"
           ></el-option>
         </el-select>
-      </el-form-item>
-      <el-form-item label="加载tm">
-        <el-switch v-model="settings.initTextmate"></el-switch>
       </el-form-item>
     </el-form>
   </div>
@@ -90,10 +93,7 @@ export default {
     },
   },
   mounted() {
-    this.themes = codeThemeList.map(i => {
-      let name = i.out ? i.name: i.file.split('.')[0]
-      return {name}
-    })
+    this.themes = codeThemeList;
     this.settings = getSettings();
     this.fonts = fontList;
     this.copilots = copilots;

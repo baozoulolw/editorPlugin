@@ -8,7 +8,7 @@ import { registerCopilot } from '../copilot/index.js'
 import { registerLanguage } from '../language/index.js'
 import { unsafeWindow } from "$"
 import { getFontName } from '../font/index.js'
-import { getMonaco } from '../utils'
+import formatBtn from '../pages/tools/formatBtn.vue'
 
 let monacoCreate = () => { }
 /**
@@ -63,11 +63,13 @@ const create = function (dom, option, ...params) {
     ...option,
     ...editorConfig,
     ...fontObj,
+    //theme: 'Monokai5',
     theme,
-    //language: option.language === 'html' ? 'vue' : option.language,
+    language: option.language === 'css' ? 'sass' : option.language,
   }, ...params)
   //setWorker()
   //setFeature(fontObj)
+  addTools(dom)
   return editor
 }
 
@@ -79,6 +81,16 @@ const preVieWEditor = () => {
     })
     editor.dispose()
   })
+}
+
+const addTools = (dom) => {
+  let parent = dom.parentNode
+  const div = document.createElement('div')
+  parent.insertBefore(div, dom)
+  const Vue = unsafeWindow.Vue
+  new Vue({
+    render: h => h(formatBtn)
+  }).$mount(div)
 }
 
 

@@ -8,6 +8,14 @@ const error = {
   7: '#CB2634',
 }
 
+const customStyle = {
+  '.text-over-hide': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  }
+}
+
 export default {
   prefix: 'tw-',
   blocklist: [],
@@ -118,6 +126,16 @@ export default {
         8: '#4E5969', // 强调/图标/特殊场景
       },
     },
+    text:{
+      
+    }
   },
-  plugins: [],
+  plugins: [
+  ],
+  api:{
+    addUtilities: {
+      '.text-accent': {color: 'var(--brand-12)'},
+      '.text-muted': {color: 'var(--gray-11)'},      
+    }
+  }
 }

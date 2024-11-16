@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "make-themes": "node shell/readFileToTheme.js",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,22 +13,18 @@
     "@shikijs/monaco": "^1.22.2",
     "@vitejs/plugin-vue2": "^2.3.1",
     "magic-string": "^0.30.12",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "tailwindcss": "^3.4.14",
     "unocss": "^0.63.6",
     "vite": "^5.2.12",
-    "vite-plugin-monkey": "^4.0.0"
+    "vite-plugin-monkey": "^4.0.0",
+    "sass": "^1.80.5",
+    "lodash": "^4.17.21",
+    "vue": "2.7"
   },
   "dependencies": {
     "@live-codes/monaco-codeium-provider": "^0.2.2",
-    "immutable": "^4.3.7",
-    "lodash": "^4.17.21",
-    "monaco-editor": "^0.52.0",
-    "monaco-editor-textmate": "^4.0.0",
     "monaco-tailwindcss": "^0.6.1",
-    "monaco-textmate": "^3.0.1",
-    "onigasm": "^2.2.5",
-    "sass": "^1.80.5",
-    "shiki": "^1.22.2",
-    "vite-plugin-monaco-editor": "^1.1.0",
-    "vue": "2.7"
+    "shiki": "^1.22.2"
   }
 }

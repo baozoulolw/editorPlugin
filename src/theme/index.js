@@ -1,16 +1,25 @@
 import { unsafeWindow } from "$"
-const { _ } = unsafeWindow
-import { getSettings, setSettings } from "../utils"
+import { getSettings, setLoading } from "../utils"
 import { codeThemeList } from './themeList'
 import { shikiToMonaco } from '@shikijs/monaco'
-import { createHighlighter } from 'shiki'
+import { createHighlighterCore } from 'shiki/core'
+import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
 
 
+
+const langs = ['javascript', 'scss', 'html', 'json']
+const options = {
+  themes: [],
+  langs: langs.map(lang => (() => import(`${import.meta.env.VITE_ALI_OSS}/langs/${lang}.mjs`))),
+  engine: createOnigurumaEngine(import(`${import.meta.env.VITE_ALI_OSS}/wasm/wasm.mjs`))
+}
 let highlighter
+let isFirst = true
+
 
 export const registerTheme = async (monaco) => {
-  unsafeWindow.codeThemes = codeThemeList
-  await initShiki()
+  unsafeWindow.codeThemes = codeThemeList.filter(i => !i.out)
+  //await initShiki()
   await defineTheme()
 }
 
@@ -24,40 +33,26 @@ const defineTheme = async () => {
  * @returns {Promise<void>}
  */
 export const regTheme = async (theme) => {
-  return
+  setLoading()
+  if (['vs', 'vs-dark'].includes(theme)) return
   let themes = unsafeWindow.codeThemes
-  let themeItem = themes.find(i => i.name === theme)
-  if (themeItem.out) return
-  if (themeItem.loaded && themeItem.cache) return
-  const response = await fetch(`${import.meta.env.VITE_ALI_OSS}/themes/${themeItem.file}`);
-  if (response.ok) {
-    const json = await response.json()
-    await highlighter.loadTheme({
-      ...json,
-      name: theme
-    })
-    //shikiToMonaco(highlighter, unsafeWindow.monaco)
-    themeItem.loaded = true
-    themeItem.cache = json
-  }
-}
-
-const initShiki = async () => {
-  const monaco = unsafeWindow.monaco
-  highlighter = await createHighlighter({
-    //themes:codeThemeList.filter(i => i.file).map(i => i.file.split('.')[0]),
-    themes:['slack-dark'],
-    langs: [
-      'javascript',
-      'typescript',
-      'html',
-      'css',
-      'sass',
-      'scss',
-      'json'
-    ],
+  const themeItem = themes.flatMap(i => i.children).find(i => i.value === theme)
+  if (!themeItem) return
+  const { cache, defaultTheme = false, load, parent, value, label } = themeItem
+  if (defaultTheme) return
+  const themeJson = cache ? cache : await (await fetch(`${import.meta.env.VITE_ALI_OSS}/themes/${parent}/${label}.json`)).json()
+  let lighter = highlighter ? highlighter : await createHighlighterCore(options)
+  highlighter = lighter
+  await lighter.loadTheme({
+    ...themeJson,
+    name: value
   })
-  //await defineTheme()
-  shikiToMonaco(highlighter, unsafeWindow.monaco)
+  shikiToMonaco(lighter, unsafeWindow.monaco)
+  themeItem.cache = themeJson
+  if(!isFirst){
+    await new Promise(resolve => setTimeout(resolve, 5000))
+    isFirst = false
+  }
+  setLoading(false)
 }
 
