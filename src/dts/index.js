@@ -2,9 +2,9 @@ import { unsafeWindow } from "$"
 
 const dts = ['lodash', 'Big', 'zzUtil', 'jquery', 'page', 'dayjs']
 export const registerDts = async () => {
-  dts.forEach(i => useDTS(unsafeWindow.monaco, i))
+    dts.forEach(i => useDTS(unsafeWindow.monaco, i))
 }
-
+0
 const useDTS = async (monaco, type) => {
   const response = await fetch(`${import.meta.env.VITE_ALI_OSS}/types/${type}.d.ts`);
   const text = await response.text();

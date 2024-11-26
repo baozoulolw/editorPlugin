@@ -14,7 +14,7 @@ export const initWorker = async () => {
     { fileName: 'tailwindcss.worker.js', key: 'tailwindcss' },
     { fileName: 'editor.worker.bundle.js', key: 'editor' },
     { fileName: 'css.worker.bundle.js', key: 'css' },
-    { fileName: 'vue.worker.js', key: 'vue' },
+    //{ fileName: 'vue.worker.js', key: 'vue' },
   ]
   await Promise.all(workers.map(async ({ fileName, key }) => {
     const text = await (await fetch(`${baseUrl}${fileName}`)).text()

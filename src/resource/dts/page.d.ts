@@ -558,6 +558,7 @@ interface CommonModule {
    * 固定方法，页面销毁前调用
    */
   pageDestroy(): void;
+  [key: string]: any;
 }
 
 type That = Omit<ReturnModule, keyof CommonModule>;

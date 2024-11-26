@@ -170,6 +170,14 @@ interface zzUtil {
    * @returns 本地化文本
    */
   $t(node: object, key: string): string;
+
+  /**
+   * 指定方法执行此时
+   * @param fun 要指定的方法
+   * @param times 指定的此时，默认为1
+   * @returns 方法
+   */
+  timeFunction(fun: function, times: number): function;
 }
 
 declare var zzUtil: zzUtil;

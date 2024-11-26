@@ -29,11 +29,10 @@ const init = async safeMonaco => {
 
 const initBefore = async safeMonaco => {
   await registerLanguage()
-  await registerDts()
   await initWorker()
   await registerTheme()
-
   setWorker()
+  await registerDts()
 }
 
 const initAfter = async safeMonaco => {

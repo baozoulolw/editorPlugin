@@ -5,7 +5,6 @@ import { unsafeWindow } from "$"
 
 let disposeTailwind
 const regTailwind = () => {
-  console.log(tailwindcssData)
   unsafeWindow.monaco.languages.css.cssDefaults.setOptions({
     data: {
       dataProviders: {
@@ -16,7 +15,7 @@ const regTailwind = () => {
 
   const { dispose, setTailwindConfig } = configureMonacoTailwindcss(unsafeWindow.monaco, {
     tailwindConfig,
-    languageSelector: ['html', 'css']
+    languageSelector:['html','css','javascript'],
   })
   disposeTailwind = dispose
 }
