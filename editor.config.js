@@ -11,7 +11,7 @@ export default {
     formatOnType: true,
     minimap: {
       enabled: true,
-      autohide:true
+      autohide: true
     },
     EditorAutoClosingEditStrategy: 'auto', // 选中括号闭合
     autoClosingComments: true, // 自动闭合注释
@@ -19,6 +19,7 @@ export default {
     overviewRulerBorder: true
   },
   copilot: 'codeium',
-  textmate:true,
-  aiCode: false
+  textmate: true,
+  aiCode: false,
+  useVim: false
 }

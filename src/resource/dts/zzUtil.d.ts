@@ -178,6 +178,58 @@ interface zzUtil {
    * @returns 方法
    */
   timeFunction(fun: function, times: number): function;
+  /**
+   * 显示图片预览
+   * @param imgList 图片列表
+   * @param node 节点，默认为 vueThis
+   * @returns 无
+   */
+  usePreviewImg(imgList: string[], node?: any): void;
+  /**
+   * @description: 删除结果提示
+   * @Date: 2024-12-02 15:17:02
+   * @Author: 王浩然
+   * @param {number} success 成功数量
+   * @param {number} fail 失败数量
+   * @param {string} fileId 文件fileId
+   * @param {string} fileName 文件名
+   * @return {Promise} Promise
+   */
+  useDeleteConfirm(
+    success: number,
+    fail: number,
+    fileId: string,
+    fileName: string
+  ): Promise;
+  /**
+   * @description: 根据fileId下载文件
+   * @param {string} fileId 文件Id
+   * @param {string} fileName 下载文件名
+   * @author: 王浩然
+   * @return {*}
+   */
+  downloadFile(fileId: string, fileName: string): Promise;
+  /**
+   * 创建一个包装函数，限制函数最多执行指定次数。
+   * @param func - 需要限制执行次数的函数
+   * @param times - 执行次数，默认 1
+   * @returns 返回一个新函数，该函数最多执行 `times` 次
+   */
+  timesExecuted<T extends (...args: any[]) => any>(
+    func: T,
+    times?: number
+  ): T & { reset: () => void };
+
+  /**
+   * 创建一个包装函数，限制函数最多跳过指定次数后再执行。
+   * @param func - 需要限制执行次数的函数
+   * @param times - 跳过次数，默认 1
+   * @returns 返回一个新函数，该函数最多跳过 `times` 次，超过后执行
+   */
+  timesNotExecuted<T extends (...args: any[]) => any>(
+    func: T,
+    times?: number
+  ): T & { reset: () => void };
 }
 
 declare var zzUtil: zzUtil;

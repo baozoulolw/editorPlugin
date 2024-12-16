@@ -57,6 +57,9 @@
           ></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="vim">
+        <el-switch v-model="settings.useVim" />
+      </el-form-item>
     </el-form>
   </div>
 </template>

@@ -9,6 +9,9 @@ import { registerLanguage } from '../language/index.js'
 import { unsafeWindow } from "$"
 import { getFontName } from '../font/index.js'
 import formatBtn from '../pages/tools/formatBtn.vue'
+import { register } from "monaco-editor-annotation";
+import { registerCommand } from '../command/index.js'
+import { initVimMode } from 'monaco-vim'
 
 let monacoCreate = () => { }
 /**
@@ -28,6 +31,7 @@ const init = async safeMonaco => {
 }
 
 const initBefore = async safeMonaco => {
+  register(safeMonaco)
   await registerLanguage()
   await initWorker()
   await registerTheme()
@@ -55,7 +59,7 @@ const editorDispose = () => {
 
 const create = function (dom, option, ...params) {
   setWorker()
-  let { editorConfig, editorConfig: { theme, fontFamily } } = getSettings()
+  let { editorConfig, editorConfig: { theme, fontFamily }, useVim } = getSettings()
   const { language } = option
   let fontObj = getFontName(fontFamily)
   const editor = monacoCreate(dom, {
@@ -69,6 +73,13 @@ const create = function (dom, option, ...params) {
   //setWorker()
   //setFeature(fontObj)
   addTools(dom)
+  registerCommand(editor)
+  if (useVim) {
+    if (unsafeWindow.vimMode) {
+      unsafeWindow.vimMode.dispose()
+    }
+    unsafeWindow.vimMode = initVimMode(editor)
+  }
   return editor
 }
 
