@@ -60,6 +60,9 @@
       <el-form-item label="vim">
         <el-switch v-model="settings.useVim" />
       </el-form-item>
+      <el-form-item label="author">
+        <el-input v-model="settings.annotationConfig.author"></el-input>
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -76,6 +79,7 @@ export default {
   data: () => ({
     settings: {
       editorConfig: {},
+      annotationConfig:{}
     },
     fonts: [],
     themes: [],
@@ -98,6 +102,7 @@ export default {
   mounted() {
     this.themes = codeThemeList;
     this.settings = getSettings();
+    console.log(this.settings)
     this.fonts = fontList;
     this.copilots = copilots;
   },

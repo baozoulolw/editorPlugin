@@ -19,4 +19,11 @@ const registerLint = (editor) => {
       editor.getAction('editor.action.formatDocument').run()
     }
   )
+  editor.addCommand(
+    monaco.KeyMod.CtrlCmd | monaco.KeyCode.Semicolon,
+    async() => {
+      const dom = document.querySelector('.codeEditBox .fs-button.comicon')
+      dom && dom.click()
+    }
+  )
 }

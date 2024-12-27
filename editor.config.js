@@ -21,5 +21,8 @@ export default {
   copilot: 'codeium',
   textmate: true,
   aiCode: false,
-  useVim: false
+  useVim: false,
+  annotationConfig: {
+    author: '王浩然'
+  }
 }

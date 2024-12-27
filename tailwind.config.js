@@ -1,20 +1,4 @@
-const error = {
-  DEFAULT: '#F53F3F',
-  1: '#FFECE8',
-  2: '#FDCDC5',
-  3: '#FBACA3',
-  5: '#F76560',
-  6: '#F53F3F',
-  7: '#CB2634',
-}
 
-const customStyle = {
-  '.text-over-hide': {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  }
-}
 
 export default {
   prefix: 'tw-',
@@ -70,8 +54,8 @@ export default {
   },
   theme: {
     colors: {
-      default: '#BCC2CD',
       fff: '#fff',
+      '000': '#000',
       primary: {
         DEFAULT: '#165DFF',
         1: '#EFF7FF',
@@ -100,8 +84,15 @@ export default {
         6: '#FF7D00',
         7: '#D25F00',
       },
-      error,
-      // danger: error,
+      error: {
+        DEFAULT: '#F53F3F',
+        1: '#FFECE8',
+        2: '#FDCDC5',
+        3: '#FBACA3',
+        5: '#F76560',
+        6: '#F53F3F',
+        7: '#CB2634',
+      },
       line: {
         1: '#EDEFF2', // 浅
         2: '#DFE2E8', // 一般
@@ -126,16 +117,11 @@ export default {
         8: '#4E5969', // 强调/图标/特殊场景
       },
     },
-    text:{
-      
+    text: {
+
     }
+
   },
   plugins: [
   ],
-  api:{
-    addUtilities: {
-      '.text-accent': {color: 'var(--brand-12)'},
-      '.text-muted': {color: 'var(--gray-11)'},      
-    }
-  }
 }

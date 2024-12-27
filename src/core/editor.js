@@ -29,9 +29,16 @@ const init = async safeMonaco => {
   monaco.editor.onWillDisposeModel(editorDispose);
   setLoading(false)
 }
-
+let updateOption
 const initBefore = async safeMonaco => {
-  register(safeMonaco)
+  const { annotationConfig: { author } } = getSettings()
+  const regis = register(safeMonaco, {
+    variable: {
+      author
+    }
+  })
+  //console.log(regis.updateOptions)
+  //updateOption = updateOptions
   await registerLanguage()
   await initWorker()
   await registerTheme()
@@ -59,7 +66,7 @@ const editorDispose = () => {
 
 const create = function (dom, option, ...params) {
   setWorker()
-  let { editorConfig, editorConfig: { theme, fontFamily }, useVim } = getSettings()
+  let { editorConfig, editorConfig: { theme, fontFamily }, useVim, annotationConfig: { author } } = getSettings()
   const { language } = option
   let fontObj = getFontName(fontFamily)
   const editor = monacoCreate(dom, {
@@ -80,6 +87,11 @@ const create = function (dom, option, ...params) {
     }
     unsafeWindow.vimMode = initVimMode(editor)
   }
+  // updateOption({
+  //   variable: {
+  //     author
+  //   }
+  // })
   return editor
 }
 
