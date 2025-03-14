@@ -3,52 +3,6 @@
 export default {
   prefix: 'tw-',
   blocklist: [],
-  safelist: [
-    {
-      pattern: /(text|bg)-(primary|success|warning|error|line|text|fill)(-\d)?$/,
-      variants: ['hover'],
-    },
-    {
-      pattern: /^tw-(text|font)-(\w+)(-\d)?$/,
-      variants: ['hover'],
-    },
-    {
-      pattern: /^-?tw-(m|p)(t|r|b|l|x|y)?-(\w+)/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^-?tw-(w|h|left|right|top|bottom)-(\w+)/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^tw-(block|inline-block|inline|flex|inline-flex|hidden)/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^tw-(static|fixed|absolute|relative|sticky)/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^tw-(justify|shrink|items|object|cursor-pointer)/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^tw-rounded(-(sm|md|lg|xl|full))?$/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^tw-border(-(\w+)(-\d)?)?$/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^tw-whitespace-(\w+)$/,
-      // variants: ['hover'],
-    },
-    {
-      pattern: /^tw-gap-((\w+)|(\d+))$/,
-      // variants: ['hover'],
-    },
-  ],
   corePlugins: {
     preflight: false,
   },
@@ -105,6 +59,10 @@ export default {
         4: '#86909C', // 次要信息
         5: '#4E5969', // 次强调/正文标题
         6: '#1D2129', // 强调/正文标题
+      },
+      info:{
+        1:'#F7F8FA',
+        6:'#1D2129'
       },
       fill: {
         1: '#FFFFFF', // 纯白

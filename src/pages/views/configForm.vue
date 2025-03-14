@@ -64,6 +64,7 @@
         <el-input v-model="settings.annotationConfig.author"></el-input>
       </el-form-item>
     </el-form>
+    <SocketBtn></SocketBtn>
   </div>
 </template>
 
@@ -74,8 +75,10 @@ import { fontList } from "../../font/fontList";
 import { copilots } from "../../copilot";
 import { setSettings } from "../../utils";
 import { regTheme } from "../../theme";
+import SocketBtn from "./scoket.vue";
 export default {
   name: "",
+  components:{SocketBtn},
   data: () => ({
     settings: {
       editorConfig: {},

@@ -12,6 +12,7 @@ import formatBtn from '../pages/tools/formatBtn.vue'
 import { register } from "monaco-editor-annotation";
 import { registerCommand } from '../command/index.js'
 import { initVimMode } from 'monaco-vim'
+import { emmetHTML } from 'emmet-monaco-es';
 
 let monacoCreate = () => { }
 /**
@@ -49,6 +50,7 @@ const initBefore = async safeMonaco => {
 const initAfter = async safeMonaco => {
   registerCopilot()
   regTailwind(safeMonaco)
+  emmetHTML(safeMonaco)
   //preVieWEditor()
 }
 
