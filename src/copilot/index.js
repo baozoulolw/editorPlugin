@@ -2,15 +2,15 @@ import { getSettings } from "../utils"
 import { initCodeium } from "./codeium"
 import { registerCompletion } from 'monacopilot';
 
-export const registerCopilot = async (monaco, editor) => {
+export const registerCopilot = async (monaco, editor,language) => {
   const { copilot = '' } = getSettings()
   if (_.isEmpty(copilot)) return
-  registerCompletion(unsafeWindow.monaco, editor, {
+  registerCompletion(monaco, editor, {
     trigger: 'onTyping',
     maxContextLines: 5000,
     allowFollowUpCompletions: true,
     technologies: ['dayjs', 'vue2.7', 'tailwindcss', 'element-ui', 'lodash',],
-    language: option.language === 'css' ? 'sass' : option.language,
+    language,
     // Your API endpoint for handling completion requests
     endpoint: `http://localhost:7969/code-completion${copilot}`,
   })

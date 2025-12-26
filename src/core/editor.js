@@ -104,7 +104,7 @@ const create = function (dom, option, ...params) {
     //   editor[action](saveView)
     // })
   }
-  registerCopilot(unsafeWindow.monaco, editor)
+  registerCopilot(unsafeWindow.monaco, editor, option.language === 'css' ? 'sass' : option.language)
   // updateOption({
   //   variable: {
   //     author
