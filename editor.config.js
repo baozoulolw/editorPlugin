@@ -10,7 +10,7 @@ export default {
     fontLigatures: true,
     formatOnType: true,
     minimap: {
-      enabled: true,
+      enabled: false,
       autohide: true
     },
     EditorAutoClosingEditStrategy: 'auto', // 选中括号闭合
@@ -18,11 +18,12 @@ export default {
     cursorBlinking: 'smooth',
     overviewRulerBorder: true
   },
-  copilot: 'codeium',
+  copilot: '/com/deepSeek',
   textmate: true,
   aiCode: false,
   useVim: false,
   annotationConfig: {
     author: '王浩然'
-  }
+  },
+  syncDownload: false
 }

@@ -177,11 +177,13 @@ interface zzUtil {
    * @param times 指定的此时，默认为1
    * @returns 方法
    */
-  timeFunction(fun: function, times: number): function;
+  timeFunction(fun: Function, times: number): Function;
   /**
-   * 显示图片预览
-   * @param imgList 图片列表
+   * 使用elementUi的图片预览 不用再写el-image节点，直接大屏预览
+   * @param imgList 图片列表 要预览的图片路径数组
    * @param node 节点，默认为 vueThis
+   * @example
+   * zzUtil.usePreviewImg(['1.png', '2.png'])
    * @returns 无
    */
   usePreviewImg(imgList: string[], node?: any): void;
@@ -200,7 +202,7 @@ interface zzUtil {
     fail: number,
     fileId: string,
     fileName: string
-  ): Promise;
+  ): Promise<any>;
   /**
    * @description: 根据fileId下载文件
    * @param {string} fileId 文件Id
@@ -208,7 +210,18 @@ interface zzUtil {
    * @author: 王浩然
    * @return {*}
    */
-  downloadFile(fileId: string, fileName: string): Promise;
+  downloadFile(fileId: string, fileName: string): Promise<any>;
+  /**
+   * @description: 根据url下载文件
+   * @param {object} options 配置项
+   * @param {string} options.url url
+   * @param {string} options.method 请求类型
+   * @param {object} options.data requestBody
+   * @param {string} fileName 下载文件名
+   * @author: 王浩然
+   * @return {*}
+   */
+  downloadFileByUrl(option: object, fileName: string): Promise<any>;
   /**
    * 创建一个包装函数，限制函数最多执行指定次数。
    * @param func - 需要限制执行次数的函数
@@ -230,6 +243,88 @@ interface zzUtil {
     func: T,
     times?: number
   ): T & { reset: () => void };
+
+  /**
+   * @description:
+   * @Date: 2024-12-02 15:17:02
+   * @Author: 王浩然
+   * @param {number} success 成功数量
+   * @param {number} fail 失败数量
+   * @param {string} fileId 文件fileId
+   * @param {string} fileName 文件名
+   * @param {string} appCode appCode
+   * @return {Promise} Promise
+   */
+  batchDeleteResConfirm(
+    success: number,
+    fail: number,
+    fileId: string,
+    fileName: string,
+    appCode: string
+  ): Promise<any>;
+  /**
+   * @description 通过浏览器api获取当前位置
+   * @author 王浩然
+   * @date 2025-03-31 15:16:22
+   * @return {Promise} Promise
+   */
+  getLocationByJs(): Promise<[number, number]>;
+  /**
+   * @description: 平滑对象
+   * @Date: 2025-03-31 17:23:05
+   * @Author: 王浩然
+   * @return {*}
+   */
+  flattenObjList(objList: object): object;
+
+  /**
+   * 创建一个包含Promise、resolve和reject的对象
+   * @returns {{promise: Promise, resolve: Function, reject: Function}} 包含Promise及其控制函数的对象
+   */
+  withResolvers(): {
+    promise: Promise<any>;
+    resolve: (value?: any) => void;
+    reject: (reason?: any) => void;
+  };
+
+  /**
+   * 使用RSA公钥加密输入字符串
+   * @param {string} input - 需要加密的字符串
+   * @returns {string} - 加密并URI编码后的字符串
+   */
+  encryptWithPublicKey(input: string): string;
+
+  /**
+   * 解析URL参数
+   * @param {string} key - 参数名称
+   * @param {string} [url] - URL字符串，默认为window.location.href
+   * @returns {string|null} - 解码后的数据，若不存在则返回null
+   */
+  parseUrlParam(key: string, url?: string): string | null;
+
+  /**
+   * 将数字格式化为带千位分隔符的字符串
+   * @param {number|string} num - 要格式化的数字或数字字符串
+   * @returns {string} - 格式化后的字符串
+   */
+  formatNumberLocale(num: number | string): string;
+
+  /**
+   * 计算百分比
+   * @param {number} value - 当前值
+   * @param {number} total - 总值
+   * @param {number} [precision=2] - 小数精度，默认为2
+   * @returns {string} - 百分比字符串
+   */
+  calcPercent(value: number, total: number, precision?: number): string;
+
+  /**
+   * 等待组件方法执行完成
+   * @param {any} node - 节点对象
+   * @param {string} comkey - 组件key
+   * @returns {Promise<any>} - 返回组件页面
+   */
+  getComWait(node: any, comkey: string): Promise<any>;
 }
 
 declare var zzUtil: zzUtil;

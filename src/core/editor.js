@@ -13,8 +13,11 @@ import { register } from "monaco-editor-annotation";
 import { registerCommand } from '../command/index.js'
 import { initVimMode } from 'monaco-vim'
 import { emmetHTML } from 'emmet-monaco-es';
+import { registerLint } from '../lint/index.js'
+import { registerEslint } from '../lint/eslint/index.js'
 
 let monacoCreate = () => { }
+const monacoCache = {}
 /**
  * @description:  初始化
  * @Date: 2024-10-29 22:42:51
@@ -40,7 +43,7 @@ const initBefore = async safeMonaco => {
   })
   //console.log(regis.updateOptions)
   //updateOption = updateOptions
-  await registerLanguage()
+  await registerLanguage(safeMonaco)
   await initWorker()
   await registerTheme()
   setWorker()
@@ -48,12 +51,12 @@ const initBefore = async safeMonaco => {
 }
 
 const initAfter = async safeMonaco => {
-  registerCopilot()
+  //registerCopilot()
   regTailwind(safeMonaco)
   emmetHTML(safeMonaco)
+  registerLint(safeMonaco)
   //preVieWEditor()
 }
-
 
 export const initSettings = () => {
   const settings = getSettings()
@@ -89,22 +92,25 @@ const create = function (dom, option, ...params) {
     }
     unsafeWindow.vimMode = initVimMode(editor)
   }
+  if (['javascript', 'css'].includes(language)) {
+    // if (monacoCache[language]) {
+    //   editor.restoreViewState(monacoCache[language])
+    // }
+    // const saveView = _.debounce(() => {
+    //   monacoCache[language] = editor.saveViewState()
+    // }, 500)
+    // const actions = ['onDidChangeCursorPosition', 'onDidChangeModelContent']
+    // actions.forEach(action => {
+    //   editor[action](saveView)
+    // })
+  }
+  registerCopilot(unsafeWindow.monaco, editor)
   // updateOption({
   //   variable: {
   //     author
   //   }
   // })
   return editor
-}
-
-const preVieWEditor = () => {
-  let types = ['json', 'html', 'css', 'javascript']
-  types.forEach(async type => {
-    let editor = unsafeWindow.monaco.editor.create(document.createElement('div'), {
-      language: type
-    })
-    editor.dispose()
-  })
 }
 
 const addTools = (dom) => {

@@ -30,7 +30,7 @@ export default {
 .btn {
   position: absolute;
   z-index: 1000;
-  left: 10px;
+  left: 75px;
   top: 10px;
   background: transparent !important;
   color: white !important;

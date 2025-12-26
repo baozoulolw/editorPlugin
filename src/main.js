@@ -4,7 +4,6 @@ import { setLoading } from "./utils";
 import { initPage } from "./pages/init";
 import { initSettings } from "./core/editor";
 import './style.css'
-import 'virtual:uno.css'
 
 while(!unsafeWindow.vueThis){
   await new Promise(resolve => setTimeout(resolve, 200))

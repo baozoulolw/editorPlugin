@@ -1,6 +1,6 @@
 import { unsafeWindow } from "$"
 
-const dts = ['lodash', 'Big', 'zzUtil', 'jquery', 'page', 'dayjs']
+const dts = ['lodash', 'Big', 'zzUtil', 'jquery', 'page', 'dayjs', 'page-module']
 export const registerDts = async () => {
     dts.forEach(i => useDTS(unsafeWindow.monaco, i))
 }

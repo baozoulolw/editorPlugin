@@ -63,6 +63,9 @@
       <el-form-item label="author">
         <el-input v-model="settings.annotationConfig.author"></el-input>
       </el-form-item>
+      <el-form-item label="同步下载">
+        <el-switch v-model="settings.syncDownload" />
+      </el-form-item>
     </el-form>
     <SocketBtn></SocketBtn>
   </div>
@@ -105,7 +108,6 @@ export default {
   mounted() {
     this.themes = codeThemeList;
     this.settings = getSettings();
-    console.log(this.settings)
     this.fonts = fontList;
     this.copilots = copilots;
   },
