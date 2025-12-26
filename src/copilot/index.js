@@ -6,10 +6,10 @@ export const registerCopilot = async (monaco, editor,language) => {
   const { copilot = '' } = getSettings()
   if (_.isEmpty(copilot)) return
   registerCompletion(monaco, editor, {
-    trigger: 'onTyping',
+    trigger: 'onIdle',
     maxContextLines: 5000,
     allowFollowUpCompletions: true,
-    technologies: ['dayjs', 'vue2.7', 'tailwindcss', 'element-ui', 'lodash',],
+    technologies: ['dayjs', 'vue2.7', 'tailwindcss', 'element-ui', 'lodash','echarts','vant2'],
     language,
     // Your API endpoint for handling completion requests
     endpoint: `http://localhost:7969/code-completion${copilot}`,
