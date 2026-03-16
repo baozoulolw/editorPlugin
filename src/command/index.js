@@ -26,4 +26,10 @@ const registerLint = (editor) => {
       dom && dom.click()
     }
   )
+  // editor.addCommand(
+  //   monaco.KeyMod.CtrlCmd | monaco.KeyMod.,
+  //   async() => {
+  //      window.ZzCompletion.trigger()
+  //   }
+  // )
 }

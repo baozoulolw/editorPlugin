@@ -84,7 +84,7 @@ const create = function (dom, option, ...params) {
   }, ...params)
   //setWorker()
   //setFeature(fontObj)
-  addTools(dom)
+  // addTools(dom)
   registerCommand(editor)
   if (useVim) {
     if (unsafeWindow.vimMode) {

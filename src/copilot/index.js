@@ -5,8 +5,8 @@ import { registerCompletion } from 'monacopilot';
 export const registerCopilot = async (monaco, editor,language) => {
   const { copilot = '' } = getSettings()
   if (_.isEmpty(copilot)) return
-  registerCompletion(monaco, editor, {
-    trigger: 'onIdle',
+  window.ZzCompletion = registerCompletion(monaco, editor, {
+    trigger: 'onTyping',
     maxContextLines: 5000,
     allowFollowUpCompletions: true,
     technologies: ['dayjs', 'vue2.7', 'tailwindcss', 'element-ui', 'lodash','echarts','vant2'],
@@ -20,6 +20,8 @@ export const registerCopilot = async (monaco, editor,language) => {
 export const copilots = [
   { name: 'deepseek-FIM', id: '/fim/deepSeek' },
   { name: 'deepseek-chat', id: '/com/deepSeek' },
+  { name: 'qwen', id: '/qwen' },
+  { name: 'kimi2.5', id: '/kimi25' },
   { name: 'mistral', id: '/mistral' },
   { name: '不使用', id: '' },
 ]
